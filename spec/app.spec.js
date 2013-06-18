@@ -43,9 +43,11 @@ describe('new event', function() {
   });
 
   it('sets event#realtime_processed field as true', function(done) {
-    Event.findById(event.id, function(err, doc) {
-      setTimeout(function() { assert.equal(event.realtime_processed, true) }, 10);
-      done();
-    });
+    setTimeout(function() {
+      Event.findById(event.id, function(err, doc) {
+        assert.equal(doc.realtime_processed, true);
+        done();
+      });
+    }, 200);
   });
 });
