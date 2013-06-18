@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Realtime Test Page</title>
+    <meta name="description" content="Realtime Test Page">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap-responsive.min.css">
+    <style>
+      .main { margin-top:50px; }
+      .navbar a, .navbar a:hover { color: #333; font-size: 16px; }
+    </style>
+  </head>
+  <body>
+  </head>
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner-flat">
+        <div class="container">
+            <ul class="nav pull-right">
+            </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container main ng-cloak">
+      <div class="row">
+        <h1>Realtime Test Page</h1>
+        <h3>Open the console and reload the page to see if everything is working</h3>
+        <div>
+          <p class="lead"></p>
+        </div>
+      </div>
+    </div>
+
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect('http://localhost:8003');
+      socket.on('devices:update', function (data) {
+        console.log('DATA', data);
+      });
+    </script>
+
+  </body>
+</html>
