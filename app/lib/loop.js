@@ -18,5 +18,7 @@ exports.execute = function() {
 }
 
 var findTokens = function(event) {
-  console.log('Event inserted in capped collection');
+  console.log('info: event created');
+  event.realtime_processed = true;
+  event.save();
 };
