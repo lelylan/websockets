@@ -11,12 +11,9 @@ app.get('/', function (req, res) {
 
 app.put('/update', function (request, response) {
   console.log('Request received');
-  var json = { id: 2 };
-
-  io.sockets.emit('devices:update', json);
-  response.json(json);
+  io.sockets.emit('devices:update', { id: '1' });
+  response.json({});
 });
-
 
 app.configure(function() {
   app.use(express.static(__dirname + '/app/assets/javascripts'));
@@ -24,5 +21,5 @@ app.configure(function() {
 });
 
 io.sockets.on('connection', function (socket) {
-  socket.emit('devices:update', { id: '1' });
+  socket.emit('devices:update', { id: '0' });
 });

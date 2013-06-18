@@ -435,10 +435,12 @@ angular.module('lelylan.components.device.directive').directive('device', ['Devi
 
     scope.$on('lelylan:device:request:start', function(event, device) {
       syncProperties(device)
+      scope.$apply()
     });
 
     scope.$on('lelylan:device:request:end', function(event, device) {
       syncProperties(device)
+      scope.$apply()
     });
 
     var syncProperties = function(device) {
