@@ -21,7 +21,7 @@ exports.execute = function() {
 var findTokens = function(event) {
 
   var tokens = function() {
-    if (process.env.DEBUG) { console.log('TOKENS:', tokens) }
+    if (process.env.DEBUG) { console.log('EVENT:', event) }
     event.findAccessTokens(stream);
   }
 
