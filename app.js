@@ -9,6 +9,15 @@ app.get('/', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
 
+app.put('/update', function (request, response) {
+  console.log('Request received');
+  var json = { id: 2 };
+
+  io.sockets.emit('devices:update', json);
+  response.json(json);
+});
+
+
 app.configure(function() {
   app.use(express.static(__dirname + '/app/assets/javascripts'));
   app.use(express.static(__dirname + '/app/assets'));

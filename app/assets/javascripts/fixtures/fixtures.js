@@ -8,7 +8,7 @@
 var device = {
   uri: 'http://api.lelylan.com/devices/1',
   id: '1',
-  name: 'Complex Light',
+  name: 'First Light',
   type: { uri: 'http://api.lelylan.com/types/1', id: '1' },
   physical: { uri: 'http://arduino.house.com/1' },
   pending: false,
@@ -43,7 +43,7 @@ var device = {
 // Second light
 var device2 = angular.copy(device);
 device2.id  = '2';
-device2.name = 'Another Light'
+device2.name = 'Second Light'
 device2.uri = 'http://api.lelylan.com/devices/2';
 device2.physical = null;
 device2.maker.id = 2;

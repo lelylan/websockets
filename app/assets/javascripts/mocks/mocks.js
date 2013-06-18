@@ -6,6 +6,7 @@ test.run(function($httpBackend, LoggedUser) {
   LoggedUser.set({ id: "1", full_name: 'Alice' })
 
   $httpBackend.when('GET', /\/templates\//).passThrough();
+  $httpBackend.when('PUT', '/update').passThrough();
 
   $httpBackend.whenGET('http://api.lelylan.com/devices/1').respond(device);
   $httpBackend.whenGET('http://api.lelylan.com/devices/1/privates').respond(privates);
