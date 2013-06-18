@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="test">
   <head>
     <base href="/">
     <meta charset="utf-8">
@@ -9,14 +9,14 @@
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="stylesheets/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="stylesheets/device-component-ng.min.css">
     <style>
       .main { margin-top:50px; }
       .navbar a, .navbar a:hover { color: #333; font-size: 16px; }
+      .device { width: 300px }
     </style>
   </head>
-  <body>
-  </head>
-  <body>
+  <body ng-controller="DashboardCtrl">
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner-flat">
         <div class="container">
@@ -26,15 +26,33 @@
       </div>
     </div>
 
-    <div class="container main ng-cloak">
+    <div class="container main">
       <div class="row">
         <h1>Realtime Test Page</h1>
-        <h3>Open the console and reload the page to see if everything is working</h3>
+        <p class="lead">
+          This page can be used to simulate a server side event updating a device.<br/>
+          When a device is updated the realtime system should update the device prepresentation.
+        </p>
         <div>
-          <p class="lead"></p>
+          <device class="device" device-id="1"></device>
+          <device class="device" device-id="2"></device>
         </div>
       </div>
     </div>
+
+    <!-- Angular Libraries -->
+    <script src="/components/underscore/underscore.js"></script>
+    <script src="/components/unstable-angular-complete/angular.js"></script>
+    <script src="/components/unstable-angular-complete/angular-resource.js"></script>
+    <script src="/components/unstable-angular-complete/angular-cookies.js"></script>
+    <script src="/controllers/dashboard-controller.js"></script>
+    <script src="/components/lelylan-ng/lelylan-ng.js"></script>
+    <script src="/components/device-component-ng/device-component-ng.js"></script>
+
+    <!-- Test Helpers -->
+    <script src="/components/unstable-angular-complete/angular-mocks.js"></script>
+    <script src="/mocks/mocks.js"></script>
+    <script src="/fixtures/fixtures.js"></script>
 
     <script src="socket.io/socket.io.js"></script>
     <script>

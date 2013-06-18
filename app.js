@@ -10,6 +10,7 @@ app.get('/', function (req, res) {
 });
 
 app.configure(function() {
+  app.use(express.static(__dirname + '/app/assets/javascripts'));
   app.use(express.static(__dirname + '/app/assets'));
 });
 
