@@ -14,7 +14,6 @@ function DashboardCtrl(socket, $scope, $rootScope, $http, $location, $timeout) {
 
   var socket = io.connect('http://localhost:8003');
   socket.on('devices:update', function (data) {
-    console.log('DATA', data);
     $scope.fire(data)
   })
 

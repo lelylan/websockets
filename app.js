@@ -10,7 +10,6 @@ app.get('/', function (req, res) {
 });
 
 app.put('/update', function (request, response) {
-  console.log('Request received');
   io.sockets.emit('devices:update', { id: '1' });
   response.json({});
 });
