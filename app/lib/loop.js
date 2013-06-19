@@ -4,6 +4,8 @@ var mongoose     = require('mongoose')
   , Application  = require('../models/people/application')
   , AccessToken  = require('../models/people/access_token');
 
+var _ = require('underscore');
+
 
 /* ------------- *
  * Realtime loop *
@@ -20,12 +22,14 @@ exports.execute = function() {
 // Returns all valid tokens for the resource for the dashboard app
 var findTokens = function(event) {
 
+  // Find all acces tokens that should e notified
   var tokens = function() {
-    if (process.env.DEBUG) { console.log('EVENT:', event) }
     event.findAccessTokens(stream);
   }
 
+  // Send the notification to the authorized clients
   var stream = function(err, tokens) {
+    tokens = _.map(tokens, function(token){ return token.token });
     if (process.env.DEBUG) { console.log('TOKENS:', tokens) }
     event.realtime_processed = true;
     event.save();

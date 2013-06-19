@@ -4,5 +4,6 @@ var Factory     = require('factory-lady')
 Factory.define('access_token', AccessToken, {
   resource_owner_id: Factory.assoc('user', 'id'),
   application_id: Factory.assoc('application', 'id'),
+  token: '1',
   scopes: 'resources'
 });

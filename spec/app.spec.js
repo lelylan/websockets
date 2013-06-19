@@ -17,7 +17,7 @@ loop.execute()
 
 describe('new event', function() {
 
-  var alice, bob, android, iphone, token, event;
+  var alice, bob, android, alice_token, bob_token, event;
 
   beforeEach(function() {
     helper.cleanDB();
@@ -27,13 +27,20 @@ describe('new event', function() {
   beforeEach(function(done) { Factory.create('user', function(doc) { alice = doc; done() }); });
   beforeEach(function(done) { Factory.create('user', function(doc) { bob   = doc; done() }); });
   beforeEach(function(done) { Factory.create('application', function(doc) { android = doc; done() }); });
-  beforeEach(function(done) { Factory.create('application', function(doc) { iphone  = doc; done() }); });
 
   beforeEach(function(done) {
     Factory.create('access_token', {
       resource_owner_id: alice.id,
-      application_id: android.id
-    }, function(doc) { token = doc; done() })
+      application_id: android.id,
+    }, function(doc) { alice_token = doc; done() })
+  });
+
+  beforeEach(function(done) {
+    Factory.create('access_token', {
+      resource_owner_id: bob.id,
+      application_id: android.id,
+      token: '2',
+    }, function(doc) { bob_token = doc; done() })
   });
 
   beforeEach(function(done) {
@@ -44,10 +51,7 @@ describe('new event', function() {
 
   it('sets event#realtime_processed field as true', function(done) {
     setTimeout(function() {
-      Event.findById(event.id, function(err, doc) {
-        assert.equal(doc.realtime_processed, true);
-        done();
-      });
+      Event.findById(event.id, function(err, doc) { assert.equal(doc.realtime_processed, true); done(); });
     }, 200);
   });
 });

@@ -6,6 +6,7 @@ accessTokenSchema = new mongoose.Schema({
   application_id: mongoose.Schema.Types.ObjectId,
   revoked_at: Date,
   scopes: String,
+  token: String,
   device_ids: { type: Array, default: [] }
 });
 
