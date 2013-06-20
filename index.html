@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="stylesheets/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="stylesheets/device-component-ng.min.css">
     <style>
-      .main { margin-top:50px; }
+      .main { margin-top:20px; width: 380px; }
+      .row { margin-left: 0; }
       .navbar a, .navbar a:hover { color: #333; font-size: 16px; }
-      .device { width: 300px; }
+      .device { width: 325px; }
       a { cursor: pointer; }
     </style>
   </head>
@@ -31,9 +32,9 @@
       <div class="row">
         <h1>Realtime Test Page</h1>
         <p class="lead">
-        This page simulates a server side event updating a device. Open this page in one<br/>
-        or more tabs and see if <a hfref="#" ng-click="send()" >clicking here</a>
-        the first light turns off in all pages.
+        This page simulates a server side event. <br/>
+        <a hfref="#" ng-click="send()" >Clicking here</a> to see the device status<br/>
+        change in any open page.
         </p>
         <div>
           <device class="device" device-id="1"></device>

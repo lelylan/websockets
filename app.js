@@ -28,13 +28,14 @@ app.get('/', function (req, res) {
 
 // TODO better test logics
 app.put('/update', function (request, response) {
-  io.sockets.emit('devices:update', { id: '1' });
+  console.log("PURE", require('./spec/fixtures/device.json'));
+  io.sockets.emit('devices:update', { data: require('./spec/fixtures/device.json') });
   response.json({});
 });
 
 // TODO better connection logics
 io.sockets.on('connection', function (socket) {
-  socket.emit('devices:update', { id: '0' });
+  //socket.emit('devices:update', { data:id: '0' });
 });
 
 server.listen(process.env.PORT);

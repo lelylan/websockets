@@ -20,18 +20,6 @@ var device = {
     uri: 'http://api.lelylan.com/properties/2',
     id: '2', value: '50', expected: '50', pending: false,
     accepted: {}
-  }, {
-    uri: 'http://api.lelylan.com/properties/3',
-    id: '3', value: '#39fbd9', expected: '#39fbd9', pending: false,
-    accepted: {}
-  }, {
-    uri: 'http://api.lelylan.com/properties/4',
-    id: '4', value: '5', expected: '5', pending: false,
-    accepted: {}
-  }, {
-    uri: 'http://api.lelylan.com/properties/5',
-    id: '5', value: '0.5', expected: '0.5', pending: false,
-    accepted: {}
   }],
   maker: { id: '1' },
   owner: { id: '1' },
@@ -88,28 +76,6 @@ var type = {
     accepted: null,
     type: 'range',
     range: { min: 0, max: 100, step: 1 }
-  }, {
-    uri: 'http://api.lelylan.com/properties/3',
-    id: '3',
-    name: 'Color',
-    default: '#654321',
-    accepted: null,
-    type: 'color'
-  }, {
-    uri: 'http://api.lelylan.com/properties/4',
-    id: '4',
-    name: 'Blinking times',
-    default: '0',
-    accepted: null,
-    type: 'number'
-  }, {
-    uri: 'http://api.lelylan.com/properties/5',
-    id: '5',
-    name: 'Blinking frequency',
-    default: '1.0',
-    accepted: null,
-    type: 'range',
-    range: { min: 0, max: 10, step: 0.1 }
   }],
   functions: [{
     uri: 'http://api.lelylan.com/functions/1',
@@ -129,16 +95,6 @@ var type = {
       uri: 'http://api.lelylan.com/properties/1',
       id: '1',
       expected: 'off',
-      pending: true
-    }]
-  }, {
-    uri: 'http://api.lelylan.com/functions/3',
-    id: '3',
-    name: 'Set intensity',
-    properties: [{
-      uri: 'http://api.lelylan.com/properties/2',
-      id: '2',
-      expected: null,
       pending: true
     }]
   }],

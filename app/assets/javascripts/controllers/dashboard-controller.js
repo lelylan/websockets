@@ -2,22 +2,24 @@
 
 function DashboardCtrl($scope, $rootScope, $http, $location, $timeout) {
 
+  var status = 'on';
+
   $scope.send = function() {
     $http({method: 'PUT', url: '/update'});
   }
 
   var socket = io.connect('http://localhost:8003');
-  socket.on('devices:update', function (data) {
-    console.log('Received device update', data);
-    $scope.fire(data);
+  socket.on('devices:update', function (event) {
+    $scope.fire(event.data);
   })
 
-  $scope.fire = function(data) {
-    if (data.id == '1') {
-      if (device.properties[0].value == 'on') { device.properties[0].value = device.properties[0].expected = 'off' }
-      else { device.properties[0].value = device.properties[0].expected = 'on' }
-      device.updated_at = new Date();
-      $rootScope.$broadcast('lelylan:device:request:end', device);
+  $scope.fire = function(resource) {
+    if (resource.id == '1') {
+      status = (status == 'on') ? 'off' : 'on';
+      resource.properties[0].value = resource.properties[0].expected = status;
+      console.log(resource.properties[0]);
+      resource.updated_at = new Date();
+      $rootScope.$broadcast('lelylan:device:request:end', resource);
       $scope.$apply();
     };
   };
