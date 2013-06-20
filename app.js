@@ -27,7 +27,7 @@ app.get('/', function (req, res) {
 });
 
 app.put('/update', function (request, response) {
-  io.sockets.emit('devices:update', { data: require('./spec/fixtures/device.json') });
+  io.sockets.emit('token-1', { data: require('./spec/fixtures/device.json') });
   response.json({});
 });
 
@@ -57,7 +57,7 @@ var findTokens = function(event) {
 
   // Send the notification to the authorized clients
   var stream = function(err, tokens) {
-    _.each(tokens, function(token) { io.sockets.emit('devices:update', event) });
+    _.each(tokens, function(token) { io.sockets.emit(token.token, event) });
     event.realtime_processed = true;
     event.save();
   }
