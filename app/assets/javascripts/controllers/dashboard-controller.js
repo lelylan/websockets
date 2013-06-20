@@ -2,22 +2,36 @@
 
 function DashboardCtrl($scope, $rootScope, $http, $location, $timeout) {
 
-  $scope.send = function() {
-    $http({method: 'PUT', url: '/update'});
+  var status = 'on';
+  $scope.connected = false;
+
+  $scope.test = function() {
+    $http({method: 'PUT', url: '/test'});
   }
 
   var socket = io.connect('http://localhost:8003');
-  socket.on('devices:update', function (data) {
-    $scope.fire(data)
+
+  socket.on('token-1', function (event) {
+    $scope.fire(event.data);
+    $scope.$apply();
   })
 
-  $scope.fire = function(data) {
-    if (data.id == '1') {
-      if (device.properties[0].value == 'on') { device.properties[0].value = device.properties[0].expected = 'off' }
-      else { device.properties[0].value = device.properties[0].expected = 'on' }
-      device.updated_at = new Date();
-      $rootScope.$broadcast('lelylan:device:request:end', device);
-      $scope.$apply();
+  socket.on('connected', function (event) {
+    $scope.connected = true;
+    $scope.$apply();
+  })
+
+  socket.on('disconnected', function (event) {
+    $scope.connected = false;
+    $scope.$apply();
+  })
+
+  $scope.fire = function(resource) {
+    if (resource.id == '1') {
+      status = (status == 'on') ? 'off' : 'on';
+      resource.properties[0].value = resource.properties[0].expected = status;
+      resource.updated_at = new Date();
+      $rootScope.$broadcast('lelylan:device:request:end', resource);
     };
   };
 };

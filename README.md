@@ -1,10 +1,12 @@
-# Relatime for Lelylan Dashboard
+# Relatime service for Lelylan Dashboard
 
-Realtime app for [Lelylan Dashboard](https://github.com/lelylan/devices-dashboard-ng)
+Realtime service for [Lelylan Dashboard](https://github.com/lelylan/devices-dashboard-ng)
+
 
 ## Requirements
 
-The Realtime app is tested against Node 0.8.8.
+The Realtime service is tested against Node 0.8.8.
+
 
 ## Installation
 
@@ -12,22 +14,99 @@ Clone the repository.
 
     git clone git@github.com:lelylan/websockets.git
 
-Run Node server
+Run Node server.
 
     foreman start
 
-## Deploay
+
+## Deploy
 
 Follow [Node.js on Heroku](https://devcenter.heroku.com/articles/nodejs).
+
+
+## How does it work
+
+The realtime system is based on the OAuth2 access token. Any time a resource is updated
+(an event is created) this is what happens.
+
+* Find all valid access token for the resource owner of the updated device.
+* Broadcast the device changes to the client who registered to the service.
+
+
+## Getting Started
+
+The realtime service can be integrated in any client who has access to a valid access token.
+
+Include the socket.io library.
+
+```html
+  <script src="socket.io/socket.io.js"></script>
+```
+
+Connect to the realtime server and sync the device component.
+In this example we define an AngularJS controller.
+
+```javascript
+function DashboardCtrl($scope, $rootScope, AccessToken) {
+  var authorized = (!!AccessToken.get().access_token);
+
+  if (authorized) {
+    var socket = io.connect('http://realtime.lelylan.appfog.com');
+
+    socket.on(AccessToken.get().access_token, function (event) {
+      $scope.fire(event.data);
+      $scope.$apply();
+    });
+
+    $scope.fire = function(device) {
+      $rootScope.$broadcast('lelylan:device:request:end', device);
+    };
+
+    socket.on('connected', function (event) {
+      $scope.connected = true;
+      $scope.$apply();
+    })
+
+    socket.on('disconnected', function (event) {
+      $scope.connected = false;
+      $scope.$apply();
+    })
+  }
+}
+
+  DashboardCtrl.$inject = ['$scope', '$rootScope', 'AccessToken'];
+```
+
+
+## Live testing
+
+Interact with the test page.
+
+* Run `foreman start`
+* Open [index.html](http://localhost:8003/)
+
 
 ## Resources
 
 * [Socket IO](http://socket.io/)
 * [Lelylan Dashboard](https://github.com/lelylan/devices-dashboard-ng)
 
+
 ## Contributing
 
 Fork the repo on github and send a pull requests with topic branches.
+Do not forget to provide specs to your contribution.
+
+### Running specs
+
+* Fork and clone the repository
+* Run `npm inspall`
+* Run `foreman start`
+* Run `foreman run mocha spec/app.spec.js`
+
+When running tests, if you open the [test page](http://localhost:8003/) you'll see the
+device being updated.
+
 
 ## Coding guidelines
 
