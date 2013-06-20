@@ -57,10 +57,12 @@ $scope.fire = function(device) {
 ```
 
 
-### Live testing
+## Live testing
+
+Interact with the test page.
 
 * Run `foreman start`
-* Open [index.html](http://localhost:8003/index.html)
+* Open [index.html](http://localhost:8003/)
 
 
 ## Resources
@@ -80,6 +82,9 @@ Do not forget to provide specs to your contribution.
 * Run `npm inspall`
 * Run `foreman start`
 * Run `foreman run mocha spec/app.spec.js`
+
+When running tests, if you open the [test page](http://localhost:8003/) you'll see the
+device being updated.
 
 
 ## Coding guidelines
