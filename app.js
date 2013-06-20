@@ -26,16 +26,13 @@ app.get('/', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
 
-// TODO better test logics
 app.put('/update', function (request, response) {
-  console.log("PURE", require('./spec/fixtures/device.json'));
   io.sockets.emit('devices:update', { data: require('./spec/fixtures/device.json') });
   response.json({});
 });
 
-// TODO better connection logics
 io.sockets.on('connection', function (socket) {
-  //socket.emit('devices:update', { data:id: '0' });
+  socket.emit('connected');
 });
 
 server.listen(process.env.PORT);

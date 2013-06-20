@@ -15,6 +15,8 @@
       .row { margin-left: 0; }
       .navbar a, .navbar a:hover { color: #333; font-size: 16px; }
       .device { width: 325px; }
+      .label { font-size: 20px; font-weight: 200; padding: 7px }
+      .label-success { background-color: #239cbb; }
       a { cursor: pointer; }
     </style>
   </head>
@@ -31,6 +33,8 @@
     <div class="container main">
       <div class="row">
         <h1>Realtime Test Page</h1>
+        <p class="lead label label-success" ng-show="connected">Successfully connected to websocket</p>
+        <p class="lead label label-important" ng-show="!connected">Disconnected</p>
         <p class="lead">
         This page simulates a server side event. <br/>
         <a hfref="#" ng-click="send()" >Clicking here</a> to see the device status<br/>
@@ -38,7 +42,6 @@
         </p>
         <div>
           <device class="device" device-id="1"></device>
-          <!--<device class="device" device-id="2"></device>-->
         </div>
       </div>
     </div>
