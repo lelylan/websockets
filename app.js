@@ -60,7 +60,8 @@ var findTokens = function(event) {
   // Send the notification to the authorized clients
   var stream = function(err, tokens) {
     _.each(tokens, function(token) {
-      io.sockets.emit('devices:update', { id: token.token, type: 'token loop' });
+      console.log('DEBUG:', 'a new event has been raised', token.token);
+      io.sockets.emit('devices:update', { id: token.token, type: 'loop' });
     });
     event.realtime_processed = true;
     event.save();

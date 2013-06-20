@@ -8,7 +8,8 @@ function DashboardCtrl($scope, $rootScope, $http, $location, $timeout) {
 
   var socket = io.connect('http://localhost:8003');
   socket.on('devices:update', function (data) {
-    $scope.fire(data)
+    console.log('Received device update', data);
+    $scope.fire(data);
   })
 
   $scope.fire = function(data) {
