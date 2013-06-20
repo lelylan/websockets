@@ -8,6 +8,6 @@ Factory.define('event', Event, {
   resource: 'devices',
   event: 'property-updated',
   source: 'lelylan',
-  data: device;
+  data: require('../../fixtures/device.json')
 });
 

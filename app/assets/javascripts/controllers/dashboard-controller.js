@@ -33,7 +33,6 @@ function DashboardCtrl($scope, $rootScope, $http, $location, $timeout) {
       console.log(resource.properties[0]);
       resource.updated_at = new Date();
       $rootScope.$broadcast('lelylan:device:request:end', resource);
-      $scope.$apply();
     };
   };
 };
