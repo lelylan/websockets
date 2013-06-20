@@ -29,6 +29,7 @@ describe('new event', function() {
     Factory.create('access_token', {
       resource_owner_id: alice.id,
       application_id: android.id,
+      token: 'token-1'
     }, function(doc) { alice_token = doc; done() })
   });
 
@@ -36,7 +37,7 @@ describe('new event', function() {
     Factory.create('access_token', {
       resource_owner_id: bob.id,
       application_id: android.id,
-      token: '2',
+      token: 'token-2'
     }, function(doc) { bob_token = doc; done() })
   });
 
