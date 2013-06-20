@@ -74,7 +74,7 @@ function DashboardCtrl($scope, $rootScope, AccessToken) {
   }
 }
 
-  DashboardCtrl.$inject = ['$scope', '$rootScope', 'AccessToken'];
+DashboardCtrl.$inject = ['$scope', '$rootScope', 'AccessToken'];
 ```
 
 
