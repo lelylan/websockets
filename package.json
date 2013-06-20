@@ -1,9 +1,11 @@
 {
   "name": "api",
-  "description": "Lelylan Subscriptions Emitter",
+  "description": "Lelylan realtime system based on websockets",
   "author": "Lelylan Dev Team <touch@lelylan.com>",
-  "scripts": { "start": "node app.js" },
-  "version": "0.1.0",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "version": "0.1.0-1",
   "dependencies": {
     "mongodb": "~1.1.11",
     "mongoose": "~3.3.1",
@@ -23,5 +25,6 @@
     "nock": "~0.13.7",
     "database-cleaner": "~0.7.0",
     "factory-lady": "~0.1.0"
-  }
+  },
+  "subdomain": "lelylan-websockets"
 }

@@ -9,7 +9,7 @@ function DashboardCtrl($scope, $rootScope, $http, $location, $timeout) {
     $http({method: 'PUT', url: '/test'});
   }
 
-  var socket = io.connect('http://localhost:8003');
+  var socket = io.connect('/');
 
   socket.on('token-1', function (event) {
     $scope.fire(event.data);
