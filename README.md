@@ -1,4 +1,4 @@
-# Relatime service for Lelylan Dashboard
+# Websockets realtime service
 
 Realtime service for [Lelylan Dashboard](https://github.com/lelylan/devices-dashboard-ng)
 
@@ -47,11 +47,11 @@ Connect to the realtime server and sync the device component.
 In this example we define an AngularJS controller.
 
 ```javascript
-function DashboardCtrl($scope, $rootScope, AccessToken) {
+function DashboardCtrl($scope, AccessToken) {
   var authorized = (!!AccessToken.get().access_token);
 
   if (authorized) {
-    var socket = io.connect('http://realtime.lelylan.appfog.com');
+    var socket = io.connect('http://lelylan-websockets.nodejitsu.com:80');
 
     socket.on(AccessToken.get().access_token, function (event) {
       $scope.fire(event.data);
@@ -74,7 +74,7 @@ function DashboardCtrl($scope, $rootScope, AccessToken) {
   }
 }
 
-DashboardCtrl.$inject = ['$scope', '$rootScope', 'AccessToken'];
+DashboardCtrl.$inject = ['$scope', 'AccessToken'];
 ```
 
 
