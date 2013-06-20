@@ -33,11 +33,11 @@
     <div class="container main">
       <div class="row">
         <h1>Realtime Test Page</h1>
-        <p class="lead label label-success" ng-show="connected">Successfully connected to websocket</p>
-        <p class="lead label label-important" ng-show="!connected">Disconnected</p>
+        <p class="lead label label-success" style="display: none" ng-show="connected">Successfully connected to websocket</p>
+        <p class="lead label label-important" style="display: none" ng-show="!connected">Disconnected</p>
         <p class="lead">
         This page simulates a server side event. <br/>
-        <a hfref="#" ng-click="send()" >Clicking here</a> to see the device status<br/>
+        <a hfref="#" ng-click="test()" >Clicking here</a> to see the device status<br/>
         change in any open page.
         </p>
         <div>

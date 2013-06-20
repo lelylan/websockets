@@ -40,20 +40,41 @@ The realtime service can be integrated in any client who has access to a valid a
 Include the socket.io library.
 
 ```html
-<script src="socket.io/socket.io.js"></script>
+  <script src="socket.io/socket.io.js"></script>
 ```
 
 Connect to the realtime server and sync the device component.
+In this example we define an AngularJS controller.
 
-```
-var socket = io.connect('realtime.lelylan.appfog.com');
-socket.on('devices:update', function (data) {
-  $scope.fire(data);
-})
+```javascript
+function DashboardCtrl($scope, $rootScope, AccessToken) {
+  var authorized = (!!AccessToken.get().access_token);
 
-$scope.fire = function(device) {
-  $rootScope.$broadcast('lelylan:device:request:end', device);
-};
+  if (authorized) {
+    var socket = io.connect('http://realtime.lelylan.appfog.com');
+
+    socket.on(AccessToken.get().access_token, function (event) {
+      $scope.fire(event.data);
+      $scope.$apply();
+    });
+
+    $scope.fire = function(device) {
+      $rootScope.$broadcast('lelylan:device:request:end', device);
+    };
+
+    socket.on('connected', function (event) {
+      $scope.connected = true;
+      $scope.$apply();
+    })
+
+    socket.on('disconnected', function (event) {
+      $scope.connected = false;
+      $scope.$apply();
+    })
+  }
+}
+
+  DashboardCtrl.$inject = ['$scope', '$rootScope', 'AccessToken'];
 ```
 
 

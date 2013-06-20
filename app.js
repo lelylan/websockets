@@ -26,7 +26,7 @@ app.get('/', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
 
-app.put('/update', function (request, response) {
+app.put('/test', function (request, response) {
   io.sockets.emit('token-1', { data: require('./spec/fixtures/device.json') });
   response.json({});
 });
@@ -43,8 +43,8 @@ server.listen(process.env.PORT);
  * Realtime loop *
  * ------------- */
 
-// Find the valid tokens associated to each event
-Event.find({ realtime_processed: false }).tailable().stream()
+// Find the valid tokens associated to property-udpated events
+Event.find({ realtime_processed: false, event: 'property-updated' }).tailable().stream()
   .on('data', function(collection) { findTokens(collection) });
 
 // Returns all valid access tokens and notifies the apps using them
@@ -52,14 +52,15 @@ var findTokens = function(event) {
 
   // Find all acces tokens to notify
   var tokens = function() {
-    event.findAccessTokens(stream);
+    event.findAccessTokens(emit);
+    event.realtime_processed = true;
+    event.save();
   }
 
   // Send the notification to the authorized clients
-  var stream = function(err, tokens) {
+  var emit = function(err, tokens) {
+    if (process.env.DEBUG) { console.log('DEBUG: sending update for event', event.event) }
     _.each(tokens, function(token) { io.sockets.emit(token.token, event) });
-    event.realtime_processed = true;
-    event.save();
   }
 
   tokens();

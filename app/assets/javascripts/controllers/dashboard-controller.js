@@ -5,8 +5,8 @@ function DashboardCtrl($scope, $rootScope, $http, $location, $timeout) {
   var status = 'on';
   $scope.connected = false;
 
-  $scope.send = function() {
-    $http({method: 'PUT', url: '/update'});
+  $scope.test = function() {
+    $http({method: 'PUT', url: '/test'});
   }
 
   var socket = io.connect('http://localhost:8003');
@@ -22,7 +22,7 @@ function DashboardCtrl($scope, $rootScope, $http, $location, $timeout) {
   })
 
   socket.on('disconnected', function (event) {
-    console.log('disconnect', $scope.connected);
+    $scope.connected = false;
     $scope.$apply();
   })
 
@@ -30,7 +30,6 @@ function DashboardCtrl($scope, $rootScope, $http, $location, $timeout) {
     if (resource.id == '1') {
       status = (status == 'on') ? 'off' : 'on';
       resource.properties[0].value = resource.properties[0].expected = status;
-      console.log(resource.properties[0]);
       resource.updated_at = new Date();
       $rootScope.$broadcast('lelylan:device:request:end', resource);
     };

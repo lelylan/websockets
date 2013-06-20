@@ -12,7 +12,7 @@ require('./factories/people/application');
 require('./factories/people/access_token');
 
 
-describe('new event', function() {
+describe('when new event', function() {
 
   var alice, bob, android, alice_token, bob_token, event;
 
@@ -25,31 +25,59 @@ describe('new event', function() {
   beforeEach(function(done) { Factory.create('user', function(doc) { bob   = doc; done() }); });
   beforeEach(function(done) { Factory.create('application', function(doc) { android = doc; done() }); });
 
-  beforeEach(function(done) {
-    Factory.create('access_token', {
-      resource_owner_id: alice.id,
-      application_id: android.id,
-      token: 'token-1'
-    }, function(doc) { alice_token = doc; done() })
+  describe('when update device properties', function() {
+
+    beforeEach(function(done) {
+      Factory.create('access_token', {
+        resource_owner_id: alice.id,
+        application_id: android.id,
+        token: 'token-1'
+      }, function(doc) { alice_token = doc; done() })
+    });
+
+    beforeEach(function(done) {
+      Factory.create('access_token', {
+        resource_owner_id: bob.id,
+        application_id: android.id,
+        token: 'token-2'
+      }, function(doc) { bob_token = doc; done() })
+    });
+
+    beforeEach(function(done) {
+      Factory.create('event', {
+        resource_owner_id: alice.id,
+      }, function(doc) { event = doc; done() })
+    });
+
+    it('sets event#realtime_processed field as true', function(done) {
+      setTimeout(function() {
+        Event.findById(event.id, function(err, doc) { assert.equal(doc.realtime_processed, true); done(); });
+      }, 200);
+    });
   });
 
-  beforeEach(function(done) {
-    Factory.create('access_token', {
-      resource_owner_id: bob.id,
-      application_id: android.id,
-      token: 'token-2'
-    }, function(doc) { bob_token = doc; done() })
+  describe('when does not update device properties', function() {
+
+    beforeEach(function(done) {
+      Factory.create('access_token', {
+        resource_owner_id: alice.id,
+        application_id: android.id,
+        token: 'token-1'
+      }, function(doc) { alice_token = doc; done() })
+    });
+
+    beforeEach(function(done) {
+      Factory.create('event', {
+        resource_owner_id: alice.id,
+        event: 'create'
+      }, function(doc) { event = doc; done() })
+    });
+
+    it('leave event#realtime_processed field as false', function(done) {
+      setTimeout(function() {
+        Event.findById(event.id, function(err, doc) { assert.equal(doc.realtime_processed, false); done(); });
+      }, 200);
+    });
   });
 
-  beforeEach(function(done) {
-    Factory.create('event', {
-      resource_owner_id: alice.id,
-    }, function(doc) { event = doc; done() })
-  });
-
-  it('sets event#realtime_processed field as true', function(done) {
-    setTimeout(function() {
-      Event.findById(event.id, function(err, doc) { assert.equal(doc.realtime_processed, true); done(); });
-    }, 200);
-  });
 });
