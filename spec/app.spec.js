@@ -1,7 +1,6 @@
 var nock   = require('nock')
   , fs     = require('fs')
   , helper = require('./helper')
-  , loop   = require('../app/lib/loop.js')
   , assert = require('assert');
 
 var Factory = require('factory-lady')
@@ -11,8 +10,6 @@ require('./factories/jobs/event');
 require('./factories/people/user');
 require('./factories/people/application');
 require('./factories/people/access_token');
-
-loop.execute()
 
 
 describe('new event', function() {
