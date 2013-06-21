@@ -44,6 +44,7 @@ server.listen(process.env.PORT);
  * ------------- */
 
 // Find the valid tokens associated to property-udpated events
+console.log('LELYLAN: starting loop');
 Event.find({ realtime_processed: false, event: 'property-update' }).tailable().stream()
   .on('data', function(collection) { findTokens(collection) });
 
@@ -52,6 +53,7 @@ var findTokens = function(event) {
 
   // Find all acces tokens to notify
   var tokens = function() {
+
     event.findAccessTokens(emit);
     event.realtime_processed = true;
     event.save();
@@ -59,13 +61,14 @@ var findTokens = function(event) {
 
   // Send the notification to the authorized clients
   var emit = function(err, tokens) {
-    if (process.env.DEBUG) { console.log('LELYLAN: sending update for event', event.event) }
+    console.log('LELYLAN: sending update for event', event.event);
     _.each(tokens, function(token) {
-      if (process.env.DEBUG) { console.log('DEBUG:', 'Emitting websocket event for token', token) }
+      console.log('LELYLAN:', 'emitting websocket event for token', token);
       io.sockets.emit(token.token, event)
     });
   }
 
+  console.log('LELYLAN: processing event', event._id);
   tokens();
 };
 
