@@ -60,7 +60,10 @@ var findTokens = function(event) {
   // Send the notification to the authorized clients
   var emit = function(err, tokens) {
     if (process.env.DEBUG) { console.log('LELYLAN: sending update for event', event.event) }
-    _.each(tokens, function(token) { io.sockets.emit(token.token, event) });
+    _.each(tokens, function(token) {
+      if (process.env.DEBUG) { console.log('DEBUG:', 'Emitting websocket event for token', token) }
+      io.sockets.emit(token.token, event)
+    });
   }
 
   tokens();
