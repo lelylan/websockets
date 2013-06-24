@@ -14,6 +14,6 @@ exports.cleanDB = function() {
 
 // Set the event :realtime_processed field as true
 exports.processed = function(event) {
-  event.realtime_processed = true;
+  event.websocket_processed = true;
   event.save();
 };

@@ -10,7 +10,7 @@ var eventSchema = new mongoose.Schema({
   event: String,
   source: String,
   data: mongoose.Schema.Types.Mixed,
-  realtime_processed: { type: Boolean, default: false }
+  websocket_processed: { type: Boolean, default: false }
 });
 
 
