@@ -21,7 +21,7 @@ findTokens = (event) ->
     emit = (err, tokens) ->
       console.log "ERROR", err.message if (err)
       console.log 'DEBUG: number of access tokens to refresh', tokens.length if process.env.DEBUG
-      setRealtimeProcessed()
+      #setRealtimeProcessed()
 
     # Set the realtime_processed field to true
     setRealtimeProcessed = ->
