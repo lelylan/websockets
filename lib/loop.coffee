@@ -10,9 +10,7 @@ AccessToken  = require '../app/models/people/access_token'
 console.log 'LELYLAN DEBUG: websocket worker up and running' if process.env.DEBUG
 
 # Find the valid tokens associated to property-udpated events
-exports.execute = (server) ->
-  io = require('socket.io').listen(server)
-
+exports.execute = (io) ->
   Event.find({ websocket_processed: false, event: 'property-update' })
   .tailable().stream().on('data', (collection) -> findTokens collection, io)
 

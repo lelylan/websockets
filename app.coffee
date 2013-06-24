@@ -35,4 +35,4 @@ server.listen(process.env.PORT)
 # --------------
 
 _loop = require './lib/loop'
-_loop.execute(server)
+_loop.execute(io)
