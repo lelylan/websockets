@@ -6,6 +6,8 @@ Application  = require '../app/models/people/application'
 AccessToken  = require '../app/models/people/access_token'
 
 
+console.log 'DEBUG: websocket worker up and running' if process.env.DEBUG
+
 # Find the valid tokens associated to property-udpated events
 exports.execute = ->
   Event.find({ websocket_processed: false, event: 'property-update' })
