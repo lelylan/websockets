@@ -11,6 +11,10 @@ var Event        = require('./app/models/jobs/event')
 
 var _  = require('underscore');
 
+io.configure(function () {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+});
 
 
 /* ---------------- *
