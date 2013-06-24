@@ -1,1 +1,1 @@
-worker: coffee app.coffee
+web: coffee app.coffee
