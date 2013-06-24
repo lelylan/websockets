@@ -1,4 +1,5 @@
 mongoose = require 'mongoose'
+underscore = require 'underscore'
 
 Event        = require '../app/models/jobs/event'
 User         = require '../app/models/people/user'
@@ -9,12 +10,14 @@ AccessToken  = require '../app/models/people/access_token'
 console.log 'LELYLAN DEBUG: websocket worker up and running' if process.env.DEBUG
 
 # Find the valid tokens associated to property-udpated events
-exports.execute = ->
+exports.execute = (server) ->
+  io = require('socket.io').listen(server)
+
   Event.find({ websocket_processed: false, event: 'property-update' })
-  .tailable().stream().on('data', (collection) -> findTokens collection)
+  .tailable().stream().on('data', (collection) -> findTokens collection, io)
 
 # Returns all valid access tokens and notifies the apps using them
-findTokens = (event) ->
+findTokens = (event, io) ->
 
   # Set a closure to get the access of event between the callbacks
   ( (event) ->
@@ -23,7 +26,8 @@ findTokens = (event) ->
     emit = (err, tokens) ->
       console.log "LELYLAN ERROR", err.message if (err)
       console.log 'LELYLAN DEBUG: refreshing', tokens.length, 'dashboards' if process.env.DEBUG
-      io.sockets.emit(token.token, event)
+      underscore.each tokens, (token) ->
+        io.sockets.emit(token.token, event)
       setWebsocketProcessed()
 
     #Set the websocket_processed field to true
