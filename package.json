@@ -13,7 +13,8 @@
     "async": "~0.1.22",
     "socket.io": "~0.9.16",
     "express": "~3.2.6",
-    "underscore": "~1.4.4"
+    "underscore": "~1.4.4",
+    "coffee": "0.0.1"
   },
   "engines": {
     "node": "~0.8.x",
