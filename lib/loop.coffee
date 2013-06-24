@@ -21,12 +21,12 @@ findTokens = (event) ->
     emit = (err, tokens) ->
       console.log "ERROR", err.message if (err)
       console.log 'DEBUG: number of access tokens to refresh', tokens.length if process.env.DEBUG
-      #setWebsocketProcessed()
+      setWebsocketProcessed()
 
-    # Set the websocket_processed field to true
-    #setWebsocketProcessed = ->
-      #event.websocket_processed = true; event.save()
-
+    #Set the websocket_processed field to true
+    setWebsocketProcessed = ->
+      event.websocket_processed = true
+      event.save()
 
     # Find the access token that belongs to the user (valid clients)
     console.log 'DEBUG: processing event related to resource', event.resource_id if process.env.DEBUG
