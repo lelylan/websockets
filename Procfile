@@ -1,1 +1,1 @@
-worker: node app.js
+worker: coffee app.coffee
