@@ -103,7 +103,7 @@ Do not forget to provide specs to your contribution.
 * Run `gem install foreman`
 * Run `npm install`
 * Run `foreman start --env .test.env` where `.test.env` contains the database test URIs
-* Run `foreman run --env .test.env mocha spec/app.spec.js`
+* Run `foreman run mocha spec/app.spec.js --env .test.env`
 
 When running tests, opening the [test page](http://localhost:8003/) you see the
 device status being updated in realtime.
