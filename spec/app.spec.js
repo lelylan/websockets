@@ -49,9 +49,9 @@ describe('when new event', function() {
       }, function(doc) { event = doc; done() })
     });
 
-    it('sets event#realtime_processed field as true', function(done) {
+    it('sets event#websocket_processed field as true', function(done) {
       setTimeout(function() {
-        Event.findById(event.id, function(err, doc) { assert.equal(doc.realtime_processed, true); done(); });
+        Event.findById(event.id, function(err, doc) { assert.equal(doc.websocket_processed, true); done(); });
       }, 200);
     });
   });
@@ -73,9 +73,9 @@ describe('when new event', function() {
       }, function(doc) { event = doc; done() })
     });
 
-    it('leave event#realtime_processed field as false', function(done) {
+    it('leave event#websocket_processed field as false', function(done) {
       setTimeout(function() {
-        Event.findById(event.id, function(err, doc) { assert.equal(doc.realtime_processed, false); done(); });
+        Event.findById(event.id, function(err, doc) { assert.equal(doc.websocket_processed, false); done(); });
       }, 200);
     });
   });

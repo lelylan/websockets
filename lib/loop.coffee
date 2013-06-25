@@ -28,7 +28,7 @@ findTokens = (event, io) ->
         io.sockets.emit(token.token, event)
       setWebsocketProcessed()
 
-    #Set the websocket_processed field to true
+    # Set the websocket_processed field to true
     setWebsocketProcessed = ->
       event.websocket_processed = true
       event.save()
