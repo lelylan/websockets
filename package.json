@@ -3,9 +3,9 @@
   "description": "Lelylan realtime system based on websockets",
   "author": "Lelylan Dev Team <touch@lelylan.com>",
   "scripts": {
-    "start": "coffee app.coffee"
+    "start": "node app.js"
   },
-  "version": "0.1.0-5",
+  "version": "0.1.0-6",
   "dependencies": {
     "mongodb": "~1.1.11",
     "mongoose": "~3.3.1",
