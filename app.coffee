@@ -13,9 +13,9 @@ app.configure ->
   app.use(express.static(__dirname + '/app/assets/javascripts'))
   app.use(express.static(__dirname + '/app/assets'))
 
-io.configure ->
-  io.set("transports", ["xhr-polling"])
-  io.set("polling duration", 10)
+#io.configure ->
+  #io.set("transports", ["xhr-polling"])
+  #io.set("polling duration", 10)
 
 app.get '/', (req, res) ->
   res.sendfile(__dirname + '/index.html')
