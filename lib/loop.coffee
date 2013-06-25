@@ -25,7 +25,7 @@ findTokens = (event, io) ->
       console.log "LELYLAN ERROR", err.message if (err)
       console.log 'LELYLAN DEBUG: refreshing', tokens.length, 'dashboards' if process.env.DEBUG
       underscore.each tokens, (token) ->
-        io.sockets.emit(token.token, event)
+        io.sockets.emit(token.token, { data: event.data, token: event.token })
       setWebsocketProcessed()
 
     # Set the websocket_processed field to true
