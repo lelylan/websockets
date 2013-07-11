@@ -9,9 +9,16 @@ function DashboardCtrl($scope, $rootScope, $http, $location, $timeout) {
     $http({method: 'PUT', url: '/test'});
   }
 
-  var socket = io.connect('/');
+  var socket = io.connect('');
 
-  socket.on('token-1', function (event) {
+  var room = 'token-1';
+
+  socket.on('connect', function() {
+    socket.emit('subscribe', room);
+  });
+
+  socket.on('update', function (event) {
+    console.log("Yotta")
     $scope.fire(event.data);
     $scope.$apply();
   })

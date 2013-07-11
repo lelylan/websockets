@@ -29,5 +29,4 @@ eventSchema.methods.findAccessTokens = function(callback) {
   }, callback);
 }
 
-
 module.exports = db.model('event', eventSchema);
