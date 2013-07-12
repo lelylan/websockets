@@ -80,9 +80,9 @@ DashboardCtrl.$inject = ['$scope', 'AccessToken'];
 
 ## Live testing
 
-Interact with the test page.
+Checkout the status page.
 
-* Run `foreman start`
+* Run `nf start`
 * Open [index.html](http://localhost:8003/)
 
 
@@ -100,14 +100,8 @@ Do not forget to provide specs to your contribution.
 ### Running specs
 
 * Fork and clone the repository
-* Run `gem install foreman`
 * Run `npm install`
-* Run `foreman start --env .test.env` where `.test.env` contains the database test URIs
-* Run `foreman run mocha spec/app.spec.js --env .test.env`
-
-When running tests, opening the [test page](http://localhost:8003/) you see the
-device status being updated in realtime.
-
+* Run `npm test`
 
 ## Coding guidelines
 
