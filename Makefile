@@ -2,7 +2,8 @@ NODE_ENV:=development
 MONGOLAB_DEVICES_URL:=mongodb://localhost:27017/devices_development
 MONGOLAB_PEOPLE_URL:=mongodb://localhost:27017/people_development
 MONGOLAB_JOBS_URL:=mongodb://localhost:27017/jobs_development
-DEBUG:=lelylan
+#DEBUG:=lelylan
+
 NODE_PORT:=8003
 
 ENV:=NODE_ENV=${NODE_ENV} MONGOLAB_DEVICES_URL=${MONGOLAB_DEVICES_URL} MONGOLAB_PEOPLE_URL=${MONGOLAB_PEOPLE_URL} MONGOLAB_JOBS_URL=${MONGOLAB_JOBS_URL} DEBUG=${DEBUG} NODE_PORT=${NODE_PORT}

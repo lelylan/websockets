@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
   , express  = require('express')
   , app      = express()
   , server   = require('http').createServer(app)
-  , io       = require('socket.io').listen(server)
+  , io       = require('socket.io').listen(server, { log: !!process.env.SCOKET_IO_LOG })
   , debug    = require('debug')('lelylan');
 
 
@@ -39,3 +39,5 @@ server.listen(process.env.NODE_PORT);
 var _loop = require('./lib/loop');
 _loop.execute(io);
 
+
+module.export = { io: io, app: app };
