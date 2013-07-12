@@ -1,7 +1,7 @@
-NODE_ENV:=development
-MONGOLAB_DEVICES_URL:=mongodb://localhost:27017/devices_development
-MONGOLAB_PEOPLE_URL:=mongodb://localhost:27017/people_development
-MONGOLAB_JOBS_URL:=mongodb://localhost:27017/jobs_development
+NODE_ENV:=test
+MONGOLAB_DEVICES_URL:=mongodb://localhost:27017/devices_test
+MONGOLAB_PEOPLE_URL:=mongodb://localhost:27017/people_test
+MONGOLAB_JOBS_URL:=mongodb://localhost:27017/jobs_test
 #DEBUG:=lelylan
 
 NODE_PORT:=18003
