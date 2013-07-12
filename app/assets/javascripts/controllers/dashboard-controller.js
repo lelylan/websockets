@@ -18,7 +18,6 @@ function DashboardCtrl($scope, $rootScope, $http, $location, $timeout) {
   });
 
   socket.on('update', function (event) {
-    console.log("Yotta")
     $scope.fire(event.data);
     $scope.$apply();
   })
