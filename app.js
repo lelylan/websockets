@@ -18,7 +18,7 @@ app.get('/', function(req, res) {
 });
 
 app.put('/test', function(request, response) {
-  io.sockets.in('token-1').emit('update', { data: require('./spec/fixtures/device.json') });
+  io.sockets.in('token-1').emit('update', { data: require('./test/fixtures/device.json') });
   response.json({});
 });
 

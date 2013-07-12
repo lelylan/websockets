@@ -27,7 +27,6 @@
     "nock": "~0.13.7",
     "database-cleaner": "~0.7.0",
     "factory-lady": "~0.1.0",
-    "coffee": "0.0.1",
     "socket.io-client": "~0.9.16"
   }
 }
