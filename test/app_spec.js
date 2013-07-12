@@ -105,12 +105,12 @@ describe('when new event', function() {
 	});
 
 
-	describe("connect",function(){
+	describe('when a user is connected to a room',function() {
 
-		it('Should broadcast new user to all users', function(done){
+		it('emits only to the required room', function(done){
 			var aliceClient = io.connect(socketURL, options);
 
-			// TODO Add this to a before filter os use sync (probably the only solution)
+			// TODO add this to a before filter os use sync (probably the only solution)
 			aliceClient.on('connect', function(data) {
 				aliceClient.emit('subscribe', 'token-alice');
 				var bobClient = io.connect(socketURL, options);
@@ -126,17 +126,10 @@ describe('when new event', function() {
 						application_id: android.id,
 						token: 'token-alice'
 					}, function(doc) {
-						alice_token = doc;
-
-						Factory.create('event', { resource_owner_id: alice.id	}, function(doc) {
-							console.log('EVENT CREATED');
-						});
+						Factory.create('event', { resource_owner_id: alice.id	}, function(doc) { });
 					});
 				});
 			});
 		});
 	});
-
 });
-
-
