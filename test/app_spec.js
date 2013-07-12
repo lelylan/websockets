@@ -106,30 +106,44 @@ describe('when new event', function() {
 
 
 	describe('when a user is connected to a room',function() {
+		var aliceClient, bobClient;
 
-		it('emits only to the required room', function(done){
-			var aliceClient = io.connect(socketURL, options);
+    beforeEach(function(done) {
+			aliceClient = io.connect(socketURL, options);
 
-			// TODO add this to a before filter os use sync (probably the only solution)
 			aliceClient.on('connect', function(data) {
 				aliceClient.emit('subscribe', 'token-alice');
-				var bobClient = io.connect(socketURL, options);
+				done();
+			});
+    });
 
-				bobClient.on('connect', function(data) {
-					bobClient.emit('subscribe', 'token-bob');
+		beforeEach(function(done) {
+			bobClient = io.connect(socketURL, options);
 
-					aliceClient.on('update', function() { done() });
-					bobClient.on('update', function()   { done() }); // if called would raise an error
+			bobClient.on('connect', function(data) {
+				bobClient.emit('subscribe', 'token-bob');
+				done();
+			});
+    });
 
+		it('emits events only to the proper room', function(done) {
+			aliceClient.on('update', function() { done() });
+			bobClient.on('update',   function() { done() }); // if called would raise an error
+
+			async.series([
+				function(cb) {
 					Factory.create('access_token', {
 						resource_owner_id: alice.id,
 						application_id: android.id,
 						token: 'token-alice'
-					}, function(doc) {
-						Factory.create('event', { resource_owner_id: alice.id	}, function(doc) { });
-					});
-				});
-			});
+					}, function() { cb() });
+				},
+				function(cb) {
+					Factory.create('event', {
+						resource_owner_id: alice.id
+					}, function() { cb() });
+				}
+			]);
 		});
 	});
 });
