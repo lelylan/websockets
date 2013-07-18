@@ -31,6 +31,18 @@ io.sockets.on('connection', function(socket) {
   socket.emit('connected');
 });
 
+server.listen(process.env.NODE_PORT, function() {
+  debug('Websocket worker up and running on port', process.env.NODE_PORT);
+
+  // if run as root, downgrade to the owner of this file
+  if (process.getuid() === 0)
+    require('fs').stat(__filename, function(err, stats) {
+      if (err) return console.log(err)
+      process.setuid(stats.uid);
+    });
+});
+
+
 server.listen(process.env.NODE_PORT);
 
 
