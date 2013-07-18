@@ -17,6 +17,3 @@ node_modules
 
 # Procfile env
 *.env
-
-# Deploy system
-deploy
