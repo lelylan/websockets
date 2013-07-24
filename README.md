@@ -14,14 +14,14 @@ Clone the repository.
 
     git clone git@github.com:lelylan/websockets.git
 
-Run Node server.
+Run Node server using [foreman](https://github.com/NodeFly/node-foreman).
 
-    foreman start
+    nf start
 
 
 ## Deploy
 
-Follow [Node.js on Heroku](https://devcenter.heroku.com/articles/nodejs).
+* Run `deploy production`
 
 
 ## How does it work
@@ -29,8 +29,8 @@ Follow [Node.js on Heroku](https://devcenter.heroku.com/articles/nodejs).
 The realtime system is based on the OAuth2 access token. Any time a resource is updated
 (an event is created) this is what happens.
 
-* Find all valid access token for the resource owner of the updated device.
-* Broadcast the device changes to the client who registered to the service.
+* Find all valid access token granted by the user when a owned device is updated.
+* Broadcast the device changes to all clients who registered to the service with a valid access token.
 
 
 ## Getting Started
@@ -51,11 +51,11 @@ function DashboardCtrl($scope, AccessToken) {
   var authorized = (!!AccessToken.get().access_token);
 
   if (authorized) {
-    var socket = io.connect('http://lelylan-websockets.nodejitsu.com:80');
+    var socket = io.connect('http://96.126.109.170:80');
 
     socket.on(AccessToken.get().access_token, function (event) {
       $scope.fire(event.data);
-      $scope.$apply();
+      $scope.$apply(); // needed to refresh the page changes
     });
 
     $scope.fire = function(device) {
@@ -77,10 +77,16 @@ function DashboardCtrl($scope, AccessToken) {
 DashboardCtrl.$inject = ['$scope', 'AccessToken'];
 ```
 
+See [Lelylan Dashboard](https://github.com/lelylan/devices-dashboard-ng) to see a real usage example.
+
 
 ## Live testing
 
-Checkout the status page.
+Production verison.
+
+* Open [index.html](http://96.126.109.170/)
+
+Development version (locally).
 
 * Run `nf start`
 * Open [index.html](http://localhost:8003/)
@@ -103,14 +109,17 @@ Do not forget to provide specs to your contribution.
 * Run `npm install`
 * Run `npm test`
 
+
 ## Coding guidelines
 
-Follow [github](https://github.com/styleguide/) guidelines.
+Follow [Felix](http://nodeguide.com/style.html) guidelines.
+
 
 ## Feedback
 
 Use the [issue tracker](http://github.com/lelylan/websockets/issues) for bugs.
 [Mail](mailto:touch@lelylan.com) or [Tweet](http://twitter.com/lelylan) us for any idea that can improve the project.
+
 
 ## Links
 
