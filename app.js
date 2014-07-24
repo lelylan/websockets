@@ -29,6 +29,8 @@ app.put('/test', function(request, response) {
 // ***************
 // Websockets app
 
+io.set('origins', '*:*' );
+
 io.sockets.on('connection', function(socket) {
   socket.on('subscribe', function(room) {
     debug('Subscribing room', room);
@@ -38,8 +40,8 @@ io.sockets.on('connection', function(socket) {
   socket.emit('connected');
 });
 
-server.listen(process.env.NODE_PORT, function() {
-  debug('Websocket worker up and running on port', process.env.NODE_PORT);
+server.listen(process.env.PORT, function() {
+  debug('Websocket worker up and running on port', process.env.PORT);
 
   // if run as root, downgrade to the owner of this file
   if (process.getuid() === 0)
@@ -49,7 +51,7 @@ server.listen(process.env.NODE_PORT, function() {
     });
 });
 
-server.listen(process.env.NODE_PORT);
+server.listen(process.env.PORT);
 
 
 // ***************

@@ -1,1 +1,1 @@
-web: nodemon app.js
+web: nodemon app.js -p $PORT

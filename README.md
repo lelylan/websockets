@@ -89,7 +89,7 @@ Production verison.
 Development version (locally).
 
 * Run `nf start`
-* Open [index.html](http://localhost:8003/)
+* Open [index.html](http://localhost:8002/)
 
 
 ## Resources
