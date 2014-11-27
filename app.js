@@ -12,7 +12,14 @@ var mongoose = require('mongoose')
 app.configure(function() {
   app.use(express.static(__dirname + '/app/assets/javascripts'))
   app.use(express.static(__dirname + '/app/assets'))
+  app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    return next();
+  });
 });
+
 
 // index test page
 app.get('/', function(req, res) {
