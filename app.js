@@ -20,7 +20,6 @@ app.configure(function() {
   });
 });
 
-
 // index test page
 app.get('/', function(req, res) {
   res.sendfile(__dirname + '/index.html')
@@ -36,7 +35,7 @@ app.put('/test', function(request, response) {
 // ***************
 // Websockets app
 
-io.set('origins', '*:*' );
+io.set('origins', '*' );
 
 io.sockets.on('connection', function(socket) {
   socket.on('subscribe', function(room) {
