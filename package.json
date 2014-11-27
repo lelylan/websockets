@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "websockets",
   "description": "Lelylan realtime system based on websockets",
   "author": "Lelylan Dev Team <touch@lelylan.com>",
   "scripts": {
@@ -19,8 +19,8 @@
     "debug": "~0.7.2"
   },
   "engines": {
-    "node": "~0.8.x",
-    "npm": "~1.1.x"
+    "node": "~0.10.x",
+    "npm": "~1.4.x"
   },
   "devDependencies": {
     "mocha": "~1.11.0",
