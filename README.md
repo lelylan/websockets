@@ -66,22 +66,10 @@ DashboardCtrl.$inject = ['$scope', 'AccessToken'];
 See [Lelylan Dashboard](https://github.com/lelylan/devices-dashboard-ng) for the actual implementation.
 
 
-## Live testing
-
-Production verison.
-
-* Open [index.html](http://96.126.109.170/)
-
-Development version (locally).
-
-* Run `nf start`
-* Open [index.html](http://localhost:8002/)
-
-
 ## Resources
 
-* [Socket IO](http://socket.io/)
 * [Lelylan Dashboard](https://github.com/lelylan/devices-dashboard-ng)
+* [Socket IO](http://socket.io/)
 
 
 ## Contributing
@@ -103,29 +91,33 @@ Follow [Felix](http://nodeguide.com/style.html) guidelines.
 
 ## Feedback
 
-Use the [issue tracker](http://github.com/lelylan/websockets/issues) for bugs.
-[Mail](mailto:touch@lelylan.com) or [Tweet](http://twitter.com/lelylan) us for any idea that can improve the project.
+Use the [issue tracker](http://github.com/lelylan/websockets/issues) for bugs or [stack overflow](http://stackoverflow.com/questions/tagged/lelylan) for questions.
+[Mail](mailto:dev@lelylan.com) or [Tweet](http://twitter.com/lelylan) us for any idea that can improve the project.
 
 
 ## Links
 
 * [GIT Repository](http://github.com/lelylan/websockets)
-* [Lelylan Dashboard](https://github.com/lelylan/devices-dashboard-ng)
 * [Lelylan Dev Center](http://dev.lelylan.com)
 * [Lelylan Site](http://lelylan.com)
 
+
 ## Authors
 
-[Andrea Reginato](http://twitter.com/andreareginato)
+[Andrea Reginato](https://www.linkedin.com/in/andreareginato)
+
 
 ## Contributors
 
-Special thanks to the [following people](https://github.com/lelylan/websockets/contributors) for submitting patches.
+Special thanks to all [contributors](https://github.com/lelylan/websockets/contributors)
+for submitting patches.
+
 
 ## Changelog
 
-See [CHANGELOG](websockets/blob/master/CHANGELOG.md)
+See [CHANGELOG](https://github.com/lelylan/websockets/blob/master/CHANGELOG.md)
 
-## Copyright
 
-Copyright (c) 2013 [Lelylan](http://lelylan.com). See [LICENSE](websockets/blob/master/LICENSE.md) for details.
+## License
+
+Lelylan is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
