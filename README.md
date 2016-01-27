@@ -23,7 +23,7 @@ The basic logic behind the websocket microservcie is that when a physical device
 
 The realtime service can be integrated in any client who has access to a valid access token.
 
-#### socket.io
+Install the socket.io library.
 
 ```html
   <script src="socket.io/socket.io.js"></script>
