@@ -1,57 +1,43 @@
 # Websockets realtime service
 
-Realtime service for [Lelylan Dashboard](https://github.com/lelylan/devices-dashboard-ng)
+Realtime service for Lelylan.
 
 
 ## Requirements
 
-The Realtime service is tested against Node 0.8.8.
+Lelylan Websockets is tested against Node 0.8.8.
 
 
 ## Installation
 
-Clone the repository.
-
-    git clone git@github.com:lelylan/websockets.git
-
-Run Node server using [foreman](https://github.com/NodeFly/node-foreman).
-
-    nf start
+    $ git clone git@github.com:lelylan/websockets.git
+    $ npm install && npm install -g foreman
+    $ nf start
 
 
-## Deploy
+## Resources
 
-* Run `deploy production`
+The basic logic behind the websocket microservcie is that when a physical device is updated, changes are broadcasted to all clients who registered to the service with a valid access token.
 
-
-## How does it work
-
-The realtime system is based on the OAuth2 access token. Any time a resource is updated
-(an event is created) this is what happens.
-
-* Find all valid access token granted by the user when a owned device is updated.
-* Broadcast the device changes to all clients who registered to the service with a valid access token.
-
-
-## Getting Started
+## Tutorial
 
 The realtime service can be integrated in any client who has access to a valid access token.
 
-Include the socket.io library.
+#### socket.io
 
 ```html
   <script src="socket.io/socket.io.js"></script>
 ```
 
 Connect to the realtime server and sync the device component.
-In this example we define an AngularJS controller.
 
 ```javascript
 function DashboardCtrl($scope, AccessToken) {
   var authorized = (!!AccessToken.get().access_token);
 
   if (authorized) {
-    var socket = io.connect('http://96.126.109.170:80');
+    // connect to the Websocket service
+    var socket = io.connect('http://localhost');
 
     socket.on(AccessToken.get().access_token, function (event) {
       $scope.fire(event.data);
@@ -77,7 +63,7 @@ function DashboardCtrl($scope, AccessToken) {
 DashboardCtrl.$inject = ['$scope', 'AccessToken'];
 ```
 
-See [Lelylan Dashboard](https://github.com/lelylan/devices-dashboard-ng) to see a real usage example.
+See [Lelylan Dashboard](https://github.com/lelylan/devices-dashboard-ng) for the actual implementation.
 
 
 ## Live testing
