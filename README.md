@@ -1,16 +1,16 @@
-# Websockets realtime service
+# Lelylan Websockets
 
-Realtime service for Lelylan.
+Lelylan full-duplex communication over TCP
 
 
 ## Requirements
 
-Lelylan Websockets is tested against Node 0.8.8.
+Lelylan Websockets is tested against Node 0.10.36.
 
 
 ## Installation
 
-    $ git clone git@github.com:lelylan/websockets.git
+    $ git clone git@github.com:lelylan/websockets.git && cd websockets
     $ npm install && npm install -g foreman
     $ nf start
 
@@ -63,13 +63,8 @@ function DashboardCtrl($scope, AccessToken) {
 DashboardCtrl.$inject = ['$scope', 'AccessToken'];
 ```
 
-See [Lelylan Dashboard](http://lelylan.github.io/devices-dashboard-ng) for the actual implementation.
+See [Lelylan Dashboard](http://lelylan.github.io/devices-dashboard-ng) for an actual implementation.
 
-
-## Resources
-
-* [Lelylan Dashboard](https://github.com/lelylan/devices-dashboard-ng)
-* [Socket IO](http://socket.io/)
 
 
 ## Contributing
@@ -79,9 +74,8 @@ Do not forget to provide specs to your contribution.
 
 ### Running specs
 
-* Fork and clone the repository
-* Run `npm install`
-* Run `npm test`
+        npm install
+        npm test
 
 
 ## Coding guidelines
