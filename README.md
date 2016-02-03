@@ -13,6 +13,8 @@ Lelylan Websockets is tested against Node 0.10.36.
     $ git clone git@github.com:lelylan/websockets.git && cd websockets
     $ npm install && npm install -g foreman
     $ nf start
+    
+When installing the service in production set [lelylan environment variables](https://github.com/lelylan/lelylan/blob/master/README.md#production).
 
 
 ## Resources
