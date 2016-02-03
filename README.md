@@ -65,7 +65,7 @@ function DashboardCtrl($scope, AccessToken) {
 DashboardCtrl.$inject = ['$scope', 'AccessToken'];
 ```
 
-See [Lelylan Dashboard](http://lelylan.github.io/devices-dashboard-ng) for an actual implementation.
+See [Lelylan Dashboard](http://lelylan.github.io/devices-dashboard-ng) code for a working implementation.
 
 
 
