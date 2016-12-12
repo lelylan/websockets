@@ -10,15 +10,30 @@ Lelylan Websockets is tested against Node 0.10.36.
 
 ## Installation
 
-    $ git clone git@github.com:lelylan/websockets.git && cd websockets
-    $ npm install && npm install -g foreman
-    $ nf start
+```bash
+$ git clone git@github.com:lelylan/websockets.git && cd websockets
+$ npm install && npm install -g foreman
+$ nf start
+```
 
 ## Install with docker
 
-    $ docker build --tag=websockets .
-    $ docker run -d -it --name websockets websockets
-    
+#### Badges
+Docker image: [lelylanlab/websockets](https://hub.docker.com/r/lelylanlab/websockets/)
+
+[![](https://images.microbadger.com/badges/version/lelylanlab/websockets:latest.svg)](http://microbadger.com/images/lelylanlab/websockets:latest "Get your own version badge on microbadger.com")  [![](https://images.microbadger.com/badges/image/lelylanlab/websockets:latest.svg)](http://microbadger.com/images/lelylanlab/websockets:latest "Get your own image badge on microbadger.com")
+
+### Use docker hub image
+```bash
+$ docker run -d -it --name websockets lelylanlab/websockets
+```
+
+### Generate local image
+```bash
+$ docker build --tag=websockets .
+$ docker run -d -it --name websockets websockets
+```
+
 When installing the service in production set [lelylan environment variables](https://github.com/lelylan/lelylan/blob/master/README.md#production).
 
 
@@ -73,7 +88,6 @@ DashboardCtrl.$inject = ['$scope', 'AccessToken'];
 See [Lelylan Dashboard](http://lelylan.github.io/devices-dashboard-ng) code for a working implementation.
 
 
-
 ## Contributing
 
 Fork the repo on github and send a pull requests with topic branches.
@@ -81,9 +95,10 @@ Do not forget to provide specs to your contribution.
 
 ### Running specs
 
-        npm install
-        npm test
-
+```bash
+npm install
+npm test
+```
 
 ## Coding guidelines
 
