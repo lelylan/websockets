@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
   , express  = require('express')
   , app      = express()
   , server   = require('http').createServer(app)
-  , io       = require('socket.io').listen(server, { log: !!process.env.SCOKET_IO_LOG })
+  , io       = require('socket.io').listen(server, { origins: '*:*', log: !!process.env.SOCKET_IO_LOG })
   , debug    = require('debug')('lelylan');
 
 
