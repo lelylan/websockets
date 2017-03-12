@@ -14,7 +14,6 @@ angular.module('lelylan', [
   'lelylan.property',
   'lelylan.function',
   'lelylan.status',
-  'lelylan.location',
   'lelylan.subscription',
   'lelylan.category',
 
@@ -112,20 +111,6 @@ client.factory('History', ['RequestWrapper', '$resource', 'lelylan.config', func
     { id: '@id' } );
 
   return RequestWrapper.wrap(resource, ['get', 'query']);
-}]);
-
-'use strict';
-
-var client = angular.module('lelylan.location', ['ngResource']);
-
-client.factory('Location', ['RequestWrapper', '$resource', 'lelylan.config', function(RequestWrapper, $resource, config) {
-
-  var resource = $resource(
-    config.endpoint + '/locations/:id',
-    { id: '@id' },
-    { update: { method: 'PUT' } } );
-
-  return RequestWrapper.wrap(resource, ['get', 'query', 'save', 'update', 'delete']);
 }]);
 
 'use strict';
